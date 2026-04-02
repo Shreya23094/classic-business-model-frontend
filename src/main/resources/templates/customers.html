@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customers</title>
+</head>
+<body>
+
+<h2>Customer Search</h2>
+
+<form action="/ui/customers" method="get">
+    <input type="text" name="country" placeholder="Enter country"/>
+    <button type="submit">Search</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Country</th>
+    </tr>
+
+    <tr th:each="c : ${customers.content}">
+        <td th:text="${c.customerName}"></td>
+        <td th:text="${c.country}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
