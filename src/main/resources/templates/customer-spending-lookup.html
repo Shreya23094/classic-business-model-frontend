@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Spending — ClassicModels</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar('spending')}"></aside>
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-title">Customer Spending <small><code style="color:var(--gold)">GET /api/customers/{id}/payment/amount</code></small></div>
+      <div class="topbar-spacer"></div><div class="topbar-badge">API 9</div>
+    </header>
+    <div class="page-body">
+      <div class="page-header animate-in">
+        <h2>Total Customer Spending</h2>
+        <p>Get the total payment amount for any customer.</p>
+      </div>
+      <div class="filter-bar animate-in">
+        <form action="/ui/customer-spending-lookup" method="get" style="display:contents;">
+          <div class="form-field">
+            <label>Customer ID</label>
+            <input type="number" name="id" placeholder="e.g. 103" th:value="${customerId}" min="1">
+          </div>
+          <div style="display:flex;gap:.5rem;align-items:flex-end;">
+            <button type="submit" class="btn btn-primary">Get Spending</button>
+          </div>
+        </form>
+      </div>
+      <div th:if="${error}" class="alert alert-danger animate-in" th:text="${error}"></div>
+      <div th:if="${spending != null}" class="animate-in">
+        <div class="revenue-hero">
+          <div class="label">Total Spending — Customer #<span th:text="${customerId}"></span></div>
+          <div class="amount"
+               th:text="${spending['totalAmount'] != null}
+                         ? '$' + ${#numbers.formatDecimal(spending['totalAmount'], 1, 'COMMA', 2, 'POINT')}
+                         : ${spending.toString()}">$0.00</div>
+        </div>
+        <div class="stats-row stagger" style="margin-top:1.5rem;">
+          <div class="stat-card" th:each="entry : ${spending}">
+            <div class="stat-label" th:text="${entry.key}"></div>
+            <div class="stat-value" style="font-size:1rem;" th:text="${entry.value}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

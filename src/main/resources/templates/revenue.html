@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revenue </title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+    .year-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .year-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color .2s;
+    }
+    .year-card:hover { border-color: var(--gold); }
+    .year-badge {
+      display: inline-block;
+      background: rgba(255,184,0,.12);
+      border: 1px solid rgba(255,184,0,.25);
+      color: var(--gold);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: .3rem .8rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .year-amount {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      font-family: var(--font-display, serif);
+    }
+    .year-label {
+      font-size: .75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-top: .4rem;
+    }
+    .rupee-note {
+      font-size: .7rem;
+      color: var(--text-dim);
+      margin-top: .3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <aside th:replace="~{fragments/layout :: sidebar('revenue')}"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-title">
+        Revenue Dashboard
+        <small><code style="color:var(--gold)">GET /api/payments/revenue</code></small>
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-badge">API 5</div>
+    </header>
+
+    <div class="page-body">
+      <div class="breadcrumb animate-in">
+        <a th:href="@{/ui/dashboard}">Dashboard</a>
+        <span class="sep">/</span>
+        <span class="current">Revenue</span>
+      </div>
+
+      <div class="page-header animate-in">
+        <h2>Revenue Overview</h2>
+        <p>Yearly revenue totals across all payments — displayed in Indian Rupees (₹)</p>
+      </div>
+
+      <div th:if="${error}" class="alert alert-danger animate-in" th:text="${error}"></div>
+
+      <div th:if="${revenueList != null}" class="animate-in">
+
+        <!-- Total Revenue Hero -->
+        <div class="revenue-hero">
+          <div class="label">Total All-Time Revenue</div>
+          <div class="amount"
+               th:text="${'₹' + #numbers.formatDecimal(totalRevenue * 83.5, 1, 'COMMA', 2, 'POINT')}">
+            ₹0.00
+          </div>
+          <div style="margin-top:.5rem; font-size:.8rem; color:var(--text-dim);">
+            USD: <span th:text="${'$' + #numbers.formatDecimal(totalRevenue, 1, 'COMMA', 2, 'POINT')}">$0</span>
+            &nbsp;·&nbsp; Converted at ₹83.5 / $1
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row stagger" style="margin-top:1.5rem;">
+          <div class="stat-card">
+            <div class="stat-label">Years of Data</div>
+            <div class="stat-value" th:text="${#lists.size(revenueList)}">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total (USD)</div>
+            <div class="stat-value text-gold" style="font-size:1.2rem;"
+                 th:text="${'$' + #numbers.formatDecimal(totalRevenue, 1, 'COMMA', 2, 'POINT')}">$0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total (INR ₹)</div>
+            <div class="stat-value" style="font-size:1.2rem; color:var(--emerald);"
+                 th:text="${'₹' + #numbers.formatDecimal(totalRevenue * 83.5, 1, 'COMMA', 0, 'POINT')}">₹0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Exchange Rate</div>
+            <div class="stat-value" style="font-size:1rem;">₹83.5 / $1</div>
+          </div>
+        </div>
+
+        <!-- Yearly Cards -->
+        <div class="year-cards stagger">
+          <div th:each="r : ${revenueList}" class="year-card">
+            <div class="year-badge" th:text="${r['year']}">2003</div>
+            <div class="year-amount"
+                 th:text="${'₹' + #numbers.formatDecimal(
+                             (r['totalAmount'] != null ? r['totalAmount'] : 0) * 83.5,
+                             1, 'COMMA', 0, 'POINT')}">₹0</div>
+            <div class="year-label">Annual Revenue (INR)</div>
+            <div class="rupee-note"
+                 th:text="${'USD: $' + #numbers.formatDecimal(
+                             r['totalAmount'] != null ? r['totalAmount'] : 0,
+                             1, 'COMMA', 2, 'POINT')}">$0.00</div>
+          </div>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="table-container animate-in" style="margin-top:2rem;">
+          <div class="table-toolbar">
+            <span class="table-toolbar-title">Yearly Revenue Breakdown</span>
+            <span class="badge badge-gold">₹ INR</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Revenue (USD)</th>
+                  <th>Revenue (INR ₹)</th>
+                  <th>% of Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="r : ${revenueList}">
+                  <td>
+                    <span class="badge badge-gold" th:text="${r['year']}">2003</span>
+                  </td>
+                  <td class="font-mono"
+                      th:text="${'$' + #numbers.formatDecimal(
+                                  r['totalAmount'] != null ? r['totalAmount'] : 0,
+                                  1, 'COMMA', 2, 'POINT')}">$0</td>
+                  <td class="text-gold" style="font-weight:600;"
+                      th:text="${'₹' + #numbers.formatDecimal(
+                                  (r['totalAmount'] != null ? r['totalAmount'] : 0) * 83.5,
+                                  1, 'COMMA', 0, 'POINT')}">₹0</td>
+                  <td>
+                    <div style="display:flex; align-items:center; gap:.5rem;">
+                      <div style="height:6px; border-radius:3px; background:var(--gold); opacity:.8;"
+                           th:style="${'width:' + (r['totalAmount'] != null ? (r['totalAmount'] / totalRevenue * 100) : 0) + '%; height:6px; border-radius:3px; background:var(--gold);'}"></div>
+                      <span class="text-muted text-sm"
+                            th:text="${#numbers.formatDecimal(
+                                        r['totalAmount'] != null ? (r['totalAmount'] / totalRevenue * 100) : 0,
+                                        1, 0, 1, 'POINT')} + '%'">0%</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div th:if="${revenueList == null and error == null}">
+        <div class="empty-state">
+          <h3>No revenue data available</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
