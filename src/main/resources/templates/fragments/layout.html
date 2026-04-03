@@ -1,0 +1,150 @@
+<aside th:fragment="sidebar(navActive)" class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div>
+      <div class="brand-text">ClassicBusinessModels</div>
+      <div class="brand-sub">Business Portal</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Navigation</div>
+
+    <a th:href="@{/ui/dashboard}"
+       th:classappend="${navActive == 'dashboard'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="1" width="7" height="7" rx="1.5"/>
+        <rect x="10" y="1" width="7" height="7" rx="1.5"/>
+        <rect x="1" y="10" width="7" height="7" rx="1.5"/>
+        <rect x="10" y="10" width="7" height="7" rx="1.5"/>
+      </svg>
+      Dashboard
+    </a>
+
+    <!-- API 1 -->
+    <a th:href="@{/ui/customers}"
+       th:classappend="${navActive == 'customers'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="6" r="3.5"/><path d="M1.5 16c0-4 3-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/>
+      </svg>
+      Customers by Country
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 1</span>
+    </a>
+
+    <!-- API 2 -->
+    <a th:href="@{/ui/top}"
+       th:classappend="${navActive == 'top'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="9,1 11.5,7 17.5,7 12.5,11 14.5,17 9,13.5 3.5,17 5.5,11 0.5,7 6.5,7"/>
+      </svg>
+      Top Customers
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 2</span>
+    </a>
+
+<!-- API 3 - Products -->
+    <a th:href="@{/ui/products}"
+       th:classappend="${navActive == 'products'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 1l8 4.5v7L9 17l-8-4.5v-7L9 1z"/><path d="M9 1v15M1 5.5l8 4.5 8-4.5"/>
+      </svg>
+      Products by Line
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 3</span>
+    </a>
+    
+      <!-- API 4 - Orders by Status -->
+    <a th:href="@{/ui/customer-status-lookup}"
+       th:classappend="${navActive == 'orders-status'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="9" r="7.5"/><path d="M9 5v4l3 3"/>
+      </svg>
+      Orders by Status
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 4</span>
+    </a>
+     <!-- API 5 - Revenue -->
+    <a th:href="@{/ui/payments/revenue}"
+       th:classappend="${navActive == 'revenue'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="9" r="7.5"/>
+        <path d="M9 4v10M6.5 6.5C6.5 5.4 7.6 4.5 9 4.5c1.4 0 2.5.9 2.5 2 0 2.2-5 2-5 4.5 0 1.1 1.1 2 2.5 2s2.5-.9 2.5-2"/>
+      </svg>
+      Revenue
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 5</span>
+    </a>
+    
+    <!-- API 6 - Customer Orders -->
+    <a th:href="@{/ui/customer-lookup}"
+       th:classappend="${navActive == 'customer-orders'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="14" height="14" rx="2"/><path d="M5 7h8M5 11h5"/>
+      </svg>
+      Customer Orders
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 6</span>
+    </a>
+  <!-- API 7 - Order Detail -->
+    <a th:href="@{/ui/order-lookup}"
+       th:classappend="${navActive == 'order-detail'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="14" height="14" rx="2"/><path d="M5 7h8M5 11h5"/>
+      </svg>
+      Order Detail
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 7</span>
+    </a>
+
+  <!-- API 8 - Orders by Status (global) -->
+    <a th:href="@{/ui/orders}"
+       th:classappend="${navActive == 'orders'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="14" height="14" rx="2"/>
+        <path d="M5 9h8M9 5v8"/>
+      </svg>
+      Orders by Status
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 8</span>
+    </a>
+  <!-- API 9 - Customer Spending -->
+    <a th:href="@{/ui/customer-spending-lookup}"
+       th:classappend="${navActive == 'spending'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="9" r="7.5"/>
+        <path d="M9 4v10M6.5 6.5C6.5 5.4 7.6 4.5 9 4.5c1.4 0 2.5.9 2.5 2 0 2.2-5 2-5 4.5 0 1.1 1.1 2 2.5 2s2.5-.9 2.5-2"/>
+      </svg>
+      Customer Spending
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 9</span>
+    </a>
+  
+    <!-- API 10 - Customer Support -->
+    <a th:href="@{/ui/customer-support-lookup}"
+       th:classappend="${navActive == 'support'} ? 'active' : ''"
+       class="nav-item">
+      <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M9 1C4.6 1 1 4.6 1 9s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
+        <path d="M9 6v4M9 13h.01"/>
+      </svg>
+      Customer Support
+      <span style="margin-left:auto; font-size:.65rem; color:var(--text-dim);">API 10</span>
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-badge">
+      <div class="user-avatar"
+           th:text="${#authentication != null} ? ${#strings.substring(#authentication.name, 0, 1).toUpperCase()} : 'A'">A</div>
+      <div class="user-info">
+        <div class="user-name"
+             th:text="${#authentication != null} ? ${#authentication.name} : 'Admin'">Admin</div>
+        <div class="user-role">Administrator</div>
+      </div>
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" class="logout-btn" title="Sign Out">⏻</button>
+      </form>
+    </div>
+  </div>
+</aside>
