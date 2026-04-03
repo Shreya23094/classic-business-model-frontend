@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── Sidebar ─────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div>
+        <div class="brand-text">ClassicModels</div>
+        <div class="brand-sub">Business Portal</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Navigation</div>
+
+      <a th:href="@{/ui/dashboard}" class="nav-item active">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="1" y="1" width="7" height="7" rx="1.5"/><rect x="10" y="1" width="7" height="7" rx="1.5"/>
+          <rect x="1" y="10" width="7" height="7" rx="1.5"/><rect x="10" y="10" width="7" height="7" rx="1.5"/>
+        </svg>
+        Dashboard
+      </a>
+
+      <a th:href="@{/ui/customers}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="6" r="3.5"/><path d="M1.5 16c0-4 3-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/>
+        </svg>
+        Customers by Country
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 1</span>
+      </a>
+
+      <a th:href="@{/ui/top}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polygon points="9,1 11.5,7 17.5,7 12.5,11 14.5,17 9,13.5 3.5,17 5.5,11 0.5,7 6.5,7"/>
+        </svg>
+        Top Customers
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 2</span>
+      </a>
+
+      <a th:href="@{/ui/customer-lookup}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="14" height="14" rx="2"/><path d="M5 7h8M5 11h5"/>
+        </svg>
+        Customer Orders
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 3</span>
+      </a>
+
+      <a th:href="@{/ui/customer-status-lookup}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="9" r="7.5"/><path d="M9 5v4l3 3"/>
+        </svg>
+        Orders by Status
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 4</span>
+      </a>
+
+      <a th:href="@{/ui/customer-support-lookup}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="9" r="7.5"/><path d="M9 6v4M9 13h.01"/>
+        </svg>
+        Customer Support
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 5</span>
+      </a>
+
+      <a th:href="@{/ui/customer-spending-lookup}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="9" r="7.5"/>
+          <path d="M9 4v10M6.5 6.5C6.5 5.4 7.6 4.5 9 4.5c1.4 0 2.5.9 2.5 2 0 2.2-5 2-5 4.5 0 1.1 1.1 2 2.5 2s2.5-.9 2.5-2"/>
+        </svg>
+        Customer Spending
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 6</span>
+      </a>
+
+      <a th:href="@{/ui/products}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 1l8 4.5v7L9 17l-8-4.5v-7L9 1z"/><path d="M9 1v15M1 5.5l8 4.5 8-4.5"/>
+        </svg>
+        Products by Line
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 7</span>
+      </a>
+
+      <a th:href="@{/ui/orders}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="14" height="14" rx="2"/><path d="M5 9h8M9 5v8"/>
+        </svg>
+        All Orders by Status
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 8</span>
+      </a>
+
+      <a th:href="@{/ui/order-lookup}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="8" r="5.5"/><path d="M13 13l3 3"/>
+        </svg>
+        Order Detail
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 9</span>
+      </a>
+
+      <a th:href="@{/ui/payments/revenue}" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="9" cy="9" r="7.5"/>
+          <path d="M9 4v10M6.5 6.5C6.5 5.4 7.6 4.5 9 4.5c1.4 0 2.5.9 2.5 2 0 2.2-5 2-5 4.5 0 1.1 1.1 2 2.5 2s2.5-.9 2.5-2"/>
+        </svg>
+        Revenue
+        <span style="margin-left:auto;font-size:.62rem;color:var(--text-dim);background:rgba(255,184,0,.1);padding:.1rem .4rem;border-radius:4px;">API 10</span>
+      </a>
+
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-badge">
+        <div class="user-avatar" th:text="${#strings.substring(username, 0, 1).toUpperCase()}">A</div>
+        <div class="user-info">
+          <div class="user-name" th:text="${username}">admin</div>
+        </div>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+          <button type="submit" class="logout-btn" title="Sign Out">⏻</button>
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ─────────────────────────────────── -->
+  <div class="main-content">
+
+    <header class="topbar">
+      <div class="topbar-title">
+        Classic Business Model
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-badge">Backend Connected</div>
+    </header>
+
+    <div class="page-body">
+
+      <div class="page-header animate-in">
+        <p>Click any API card below to hit that endpoint.</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row stagger">
+        <div class="stat-card">
+          <div class="stat-label">Total APIs</div>
+          <div class="stat-value gold">10</div>
+          <div class="stat-change text-xs" style="color:var(--gold);">All endpoints active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Modules</div>
+          <div class="stat-value">4</div>
+          <div class="stat-change text-muted text-xs">Customers · Orders · Products · Payments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Auth</div>
+          <div class="stat-value emerald" style="font-size:1.1rem;">JWT</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Backend Port</div>
+          <div class="stat-value" style="font-size:1.5rem;">8085</div>
+          <div class="stat-change text-xs" style="color:var(--emerald);">● Connected</div>
+        </div>
+      </div>
+
+      <!-- Section Label -->
+      <div style="margin-top:2rem; margin-bottom:1rem; display:flex; align-items:center; gap:.75rem;">
+        <h3 style="font-size:1rem; font-weight:700; color:var(--text); margin:0;">All 10 API Endpoints</h3>
+      </div>
+
+      <!-- 10 API Cards Grid -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:1.25rem;" class="stagger">
+
+        <!-- API 1 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Customers by Country</div>
+              <div class="card-subtitle">API 1 </div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers?country=
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Filter customers by country name with pagination. Try: USA, France, Germany.
+          </p>
+          <a th:href="@{/ui/customers}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Search Customers 
+          </a>
+        </div>
+
+        <!-- API 2 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Top Customers</div>
+              <div class="card-subtitle">API 2 </div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers/top
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Returns highest-value customers ranked by total order amount placed.
+          </p>
+          <a th:href="@{/ui/top}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            View Top Customers 
+          </a>
+        </div>
+
+    
+
+        <!-- API 3 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Products by Line</div>
+              <div class="card-subtitle">API 3</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/products?productLine=
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Browse 7 lines: Classic Cars, Motorcycles, Planes, Ships, Trains, Trucks &amp; Buses, Vintage Cars.
+          </p>
+          <a th:href="@{/ui/products}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Browse Products 
+          </a>
+        </div>
+
+        <!-- API 4 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">All Orders by Status</div>
+              <div class="card-subtitle">API 4</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/orders?status=
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Browse ALL orders across every customer filtered by their current status.
+          </p>
+          <a th:href="@{/ui/orders}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Browse All Orders
+          </a>
+        </div>
+
+       
+
+        <!-- API 5 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Total Revenue</div>
+              <div class="card-subtitle">API 5</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/payments/revenue
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Yearly revenue totals across all customers and payments.
+          </p>
+          <a th:href="@{/ui/payments/revenue}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            View Revenue 
+          </a>
+        </div>
+        
+            <!-- API 6 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Customer Orders</div>
+              <div class="card-subtitle">API 6</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers/{id}/orders
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Fetch all orders placed by a specific customer. Enter customer ID (e.g. 103).
+          </p>
+          <a th:href="@{/ui/customer-lookup}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Fetch Customer Orders 
+          </a>
+        </div>
+
+       
+         <!-- API 7 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Order Detail</div>
+              <div class="card-subtitle">API 7</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/orders/{id}
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Enter an order number (e.g. 10100).
+          </p>
+          <a th:href="@{/ui/order-lookup}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            View Order Detail 
+          </a>
+        </div>
+        
+ <!-- API 8 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Orders by Status</div>
+              <div class="card-subtitle">API 8</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers/{id}/orders_status
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Filter a customer's orders by status: Shipped, In Process, Resolved, Cancelled, On Hold, Disputed.
+          </p>
+          <a th:href="@{/ui/customer-status-lookup}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Filter by Status 
+          </a>
+        </div>
+
+ <!-- API 9 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Customer Spending</div>
+              <div class="card-subtitle">API 9 </div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers/{id}/payment/amount
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Get the total amount a customer has spent across all their payments.
+          </p>
+          <a th:href="@{/ui/customer-spending-lookup}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Get Spending
+          </a>
+        </div>
+
+ <!-- API 10 -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Customer Support</div>
+              <div class="card-subtitle">API 10</div>
+            </div>
+            <span class="badge badge-gold">GET</span>
+          </div>
+          <div style="padding:.5rem .75rem; background:var(--bg-elevated); border-radius:6px;
+                      font-size:.73rem; color:var(--gold); font-family:monospace; margin-bottom:.75rem;">
+            GET /api/customers/{id}/support
+          </div>
+          <p style="font-size:.78rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+            Find the assigned support representative for any customer by their ID.
+          </p>
+          <a th:href="@{/ui/customer-support-lookup}" class="btn btn-outline btn-sm" style="width:100%; text-align:center;">
+            Find Support Representative
+          </a>
+        </div>
+        
+      </div>
+      <!-- end grid -->
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
